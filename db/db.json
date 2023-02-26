@@ -1,28 +1,23 @@
 [
-  14,
-  {
-    "title": "cooking",
-    "text": "kids lunch",
-    "id": 6
-  },
-  {
-    "title": "call doctor",
-    "text": "for appointment",
-    "id": 7
-  },
+  3,
   {
     "title": "washing",
     "text": "bedsheets",
-    "id": 8
+    "id": 1
   },
   {
     "title": "shopping",
-    "text": "milk",
-    "id": 9
+    "text": "Kids clothes",
+    "id": 3
   },
   {
-    "title": "house chores",
-    "text": "cleaning",
-    "id": 10
+    "title": "Homework",
+    "text": "Finish homework",
+    "id": 1
+  },
+  {
+    "title": "Finish homework",
+    "text": "Homework",
+    "id": 2
   }
 ]

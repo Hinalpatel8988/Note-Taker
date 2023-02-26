@@ -28,8 +28,6 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
-
-
 //Add note
 
 function addNewNote(body, allNotes) {
@@ -54,6 +52,27 @@ function addNewNote(body, allNotes) {
 app.post('/api/notes', (req, res) => {
   const newNote = addNewNote(req.body, allNotes);
   res.json(newNote);
+});
+
+//delete notes
+
+function deleteNote(id, allNotes) {
+  for (let i = 0; i < allNotes.length; i++) {
+      let note = allNotes[i];
+
+      if (note.id == id) {
+        allNotes.splice(i, 1);
+  fs.writeFileSync(
+    path.join(__dirname, './db/db.json'),
+    JSON.stringify(allNotes, null, 2)
+    );
+    break;
+    }
+  }
+}
+app.delete('/api/notes/:id', (req, res) => {
+  deleteNote(req.params.id, allNotes);
+  res.json(true);
 });
 
 app.listen(PORT, () =>
