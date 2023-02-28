@@ -22,16 +22,15 @@ app.post('/notes', (req, res) => {
     res.json(newNote);
   });
 
-  app.delete('/notes/:id', (req, res) => {
-    const db = JSON.parse(fs.readFileSync('./db/db.json', 'utf-8'));
-  
-    const newData = db.filter(note => parseInt(note.id) !== parseInt(req.params.id));
-  
-    fs.writeFileSync('./db/db.json', JSON.stringify(newData), (err, res) => {
-      if(err) throw err;
-    });
-  
-    res.json(newData);
-  });
+app.delete('/notes/:id', (request, response) => {
+    let noteId = request.params.id.toString();
+    console.log(`\n\nDELETE note request for noteId: ${noteId}`);
+
+    let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    const newData = data.filter( note => note.id.toString() !== noteId );
+    fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+    console.log(`\nSuccessfully deleted note : ${noteId}`);
+    response.json(newData);
+});
 
 module.exports = app;
